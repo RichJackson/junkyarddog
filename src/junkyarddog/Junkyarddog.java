@@ -41,14 +41,11 @@ public class Junkyarddog {
         
 
         
-        
-        
-        
-        
+     
         for (int i=0;i<600;i++){
             
             
-            sb.append("update target_output set ");
+            sb.append("update process_source_new set ");
             sb.append("patient_id = ").append(i).append(",");
             String ageInt = String.valueOf(rand.nextInt(99));
             if (ageInt.length()==1){
@@ -79,8 +76,9 @@ public class Junkyarddog {
             sb.append(endspellSt);            
             sb.append("diagnosis = \'" +diagnoses.get(rand.nextInt(7))+"\', ");
             sb.append("gender = \'" + gender.get(rand.nextInt(3))+"\' ,");
-            sb.append("medication = \'" + buildMedicationJson()+"\' ;");
+            sb.append("medication = \'" + buildMedicationJson()+"\'");
             
+            sb.append(" where patient_id is not null order by rand() limit 50;");
             sb.append("\n");
                                                                                            
             
