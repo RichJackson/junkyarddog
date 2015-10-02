@@ -60,25 +60,29 @@ public class Junkyarddog {
                 startspellInt = "01";
             } 
             Integer endSpell = Integer.valueOf(startspellInt);
+
+            
             
             endSpell = endSpell+ rand.nextInt(25);
             
             String endspellSt;
             
             if(endSpell>31){
+                
+                
                 endspellSt = "spell_end = \'"+(endSpell-31)+"-FEB-07\',";
             }else{
                 endspellSt = "spell_end = \'"+endSpell+"-JAN-07\',";
             }
             
             
-            sb.append("spell_start = \'"+startspellInt+"-JAN-07\'");
+            sb.append("spell_start = \'"+startspellInt+"-JAN-07\',");
             sb.append(endspellSt);            
             sb.append("diagnosis = \'" +diagnoses.get(rand.nextInt(7))+"\', ");
             sb.append("gender = \'" + gender.get(rand.nextInt(3))+"\' ,");
             sb.append("medication = \'" + buildMedicationJson()+"\'");
             
-            sb.append(" where patient_id is not null order by rand() limit 50;");
+            sb.append(" where  id in (select id from process_source_new where patient_id is not null order by random() limit 50) ");
             sb.append("\n");
                                                                                            
             
@@ -137,10 +141,7 @@ public class Junkyarddog {
                 sb.append(",");
             }
         }
-        sb.append("}");
-        
-        return sb.toString();
-        
-    }
-    
+        sb.append("}");        
+        return sb.toString();        
+    }    
 }
