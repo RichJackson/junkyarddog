@@ -82,7 +82,7 @@ public class Junkyarddog {
             sb.append("gender = \'" + gender.get(rand.nextInt(3))+"\' ,");
             sb.append("medication = \'" + buildMedicationJson()+"\'");
             
-            sb.append(" where  id in (select id from process_source_new where patient_id is not null order by random() limit 50) ");
+            sb.append(" where  id in (select id from process_source_new where patient_id is null order by random() limit 50) ");
             sb.append(";\n");
                                                                                            
             
